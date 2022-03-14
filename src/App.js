@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
-import Task from './Components/Task';
+// import Task from './Components/Task';
+
+const Task = ({ taskName, time }) => {
+  return (
+    <div className="task">
+      <h1>TaskName: {taskName}</h1>
+      <h1>Time To Complete: {time}</h1>
+    </div>
+  )
+}
 
 function App() {
   const [taskName, setTaskName] = useState("");
@@ -26,7 +35,9 @@ function App() {
 
       <button onClick={addTask}>Add+</button>
 
-      <Task taskName="do homework" time="20 minutes" />
+      {taskList.map((task) => {
+        return <Task taskName={task.task} time={task.time} />
+      })}
     </div>
   );
 }
